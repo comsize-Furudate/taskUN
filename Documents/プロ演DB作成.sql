@@ -1,4 +1,5 @@
 /* DB作成 */
+DROP DATABASE IF EXISTS taskdb;
 CREATE DATABASE taskdb CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 /*DB選択*/
@@ -14,7 +15,7 @@ CREATE TABLE taskdb.m_user
 );
 
 /*カテゴリマスタ作成*/
-CREATE TABLE taskdb.m_categoryr
+CREATE TABLE taskdb.m_category
 (
 	category_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	catrgory_name VARCHAR(20) NOT NULL UNIQUE KEY,
@@ -40,14 +41,14 @@ CREATE TABLE taskdb.t_task
 	user_id  VARCHAR(24) NOT NULL,
 	status_code  CHAR(2) NOT NULL,
 	memo  VARCHAR(100),
-	create_datetime  TIMESTAMP NOT NULL,
-	update_datetime  TIMESTAMP NOT NULL,
+	create_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	update_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE,
 	PRIMARY KEY (task_id)
 );
 
 /*カテゴリマスタINSERT*/
-INSERT INTO taskdb.m_categoryr (catrgory_name) VALUES ("新商品A：開発プロジェクト");
-INSERT INTO taskdb.m_categoryr (catrgory_name) VALUES (既存商品B：改良プロジェクト");
+INSERT INTO taskdb.m_category (category_name) VALUES ("新商品A：開発プロジェクト");
+INSERT INTO taskdb.m_category (category_name) VALUES ("既存商品B：改良プロジェクト");
 
 
 /*ステータスマスタINSERT*/
