@@ -42,7 +42,10 @@ CREATE TABLE taskdb.t_task
 	status_code  CHAR(2) NOT NULL,
 	memo  VARCHAR(100),
 	create_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	update_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	update_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	FOREIGN KEY (category_id) REFERENCES m_category(category_id),
+	FOREIGN KEY (user_id) REFERENCES m_user(user_id),
+	FOREIGN KEY (status_code) REFERENCES m_status(status_code)
 );
 
 /*カテゴリマスタINSERT*/
