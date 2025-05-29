@@ -18,7 +18,7 @@ CREATE TABLE taskdb.m_user
 CREATE TABLE taskdb.m_category
 (
 	category_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	catrgory_name VARCHAR(20) NOT NULL UNIQUE KEY,
+	category_name VARCHAR(20) NOT NULL UNIQUE KEY,
 	update_datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE taskdb.m_status
 /* タスクマスタ作成 */
 CREATE TABLE taskdb.t_task
 ( 
-	task_id INT NOT NULL AUTO_INCREMENT,
+	task_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	task_name   VARCHAR(50) NOT NULL,
 	category_id INT NOT NULL,
 	limit_date  DATE,
@@ -42,8 +42,7 @@ CREATE TABLE taskdb.t_task
 	status_code  CHAR(2) NOT NULL,
 	memo  VARCHAR(100),
 	create_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	update_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE,
-	PRIMARY KEY (task_id)
+	update_datetime  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 /*カテゴリマスタINSERT*/
@@ -55,4 +54,3 @@ INSERT INTO taskdb.m_category (category_name) VALUES ("既存商品B：改良プ
 INSERT INTO taskdb.m_status (status_code,status_name) VALUES (00,"未着手");
 INSERT INTO taskdb.m_status (status_code,status_name) VALUES (50,"着手");
 INSERT INTO taskdb.m_status (status_code,status_name) VALUES (99,"完了");
-
