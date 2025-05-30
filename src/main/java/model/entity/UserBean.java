@@ -34,6 +34,4 @@ public class UserBean {
 		this.userName = userName;
 	}
 	
-	
-
 }
