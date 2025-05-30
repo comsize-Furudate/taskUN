@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,31 +8,35 @@
 </head>
 <body>
 
-<h2>ログアウトしますか？</h2>
+	<%
+	if (session.getAttribute("id")==null) {
+	%>
 
-<table>
+	<h2>ログインされていません</h2>
 
-<tr>
-<th>
-<td>
+	<a href="login.jsp">ログイン画面へ</a>
 
-<form action="logout-servlet" method="post">
+	<%
+	} else {
+	%>
 
-<input type="submit" value="はい">
+	<h2>ログアウトしますか？</h2>
 
-</form>
+	<form action="logout-servlet" method="post">
 
-<form action="menu.jsp" method="post">
+		<input type="submit" value="はい">
 
-<input type="submit" value="いいえ">
+	</form>
 
-</form>
+	<form action="menu.jsp" method="post">
 
-</td>
-</th>
-</tr>
+		<input type="submit" value="いいえ">
 
-</table>
+	</form>
+
+	<%
+	}
+	%>
 
 </body>
 </html>
