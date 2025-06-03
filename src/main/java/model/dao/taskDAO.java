@@ -32,16 +32,5 @@ public class taskDAO {
 			return taskList;
 		}
 	}
-	public int update(TaskBean t) {
-		String sql = "UPDATE t_task SET task_name=?, category_code=?,limit_date=?,status_code=?,memo=? WHERE task_id=?";
-		try (
-				PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql)) {
 
-			pstmt.setInt(1, b.getCategoryCode());
-			pstmt.setString(2, b.getItemName());
-			pstmt.setInt(3, b.getPrice());
-			pstmt.setInt(4, b.getItemCode());
-			int count = pstmt.executeUpdate();
-			return count;
-	}
 }

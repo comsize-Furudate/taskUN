@@ -37,7 +37,7 @@
 			TaskBean tb=tbList.get(i);%>
 		<tr>
 			
-			<td><%=tb.getTaskId() %></td>
+			<td><a href="taskDetailServlet?task_id=<%=tb.getTaskId() %>"><%=tb.getTaskId() %></a></td>
 			<td><%=tb.getTaskName() %></td>
 			<td><%=tb.getCategoryName() %></td>
 			<td><%=tb.getLimit() %></td>
