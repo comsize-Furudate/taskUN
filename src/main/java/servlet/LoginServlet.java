@@ -34,8 +34,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -51,44 +50,55 @@ public class LoginServlet extends HttpServlet {
 
 		UserDAO dao = new UserDAO();
 
-		try {
+		if (userId == null || userId.isEmpty()) {
 
-			UserBean userbean = dao.logincheck(userId);
-
-			String name = userbean.getUserName();
-
-			if (userbean.getPassword().equals(pass)) {
-
-				String loginsuccess = "成功";
-
-				HttpSession session = request.getSession();
-				session.setAttribute("loginsuccess", loginsuccess);
-				session.setAttribute("id", userId);
-				session.setAttribute("name", name);
-				session.setAttribute("pass", pass);
-
-				RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
-				rd.forward(request, response);
-
-			} else {
-				String error = "ユーザーIDまたはパスワードが正しくありません";
-				request.setAttribute("error", error);
-
-				RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
-				rd.forward(request, response);
-			}
-
-		} catch (NullPointerException e) {
-
-			String error = "ユーザーIDまたはパスワードが正しくありません";
+			String error = "ユーザーID、パスワードを入力してください";
 			request.setAttribute("error", error);
 
 			RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
 			rd.forward(request, response);
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} else if (userId.length() > 24 || pass.length() > 32) {
 
-			e.printStackTrace();
+			String error = "ユーザーIDまたはパスワードが最大文字数を超えています";
+			request.setAttribute("error", error);
+
+			RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
+			rd.forward(request, response);
+
+		} else {
+
+			try {
+
+				UserBean userbean = dao.logincheck(userId);
+
+				String name = userbean.getUserName();
+
+				if (userbean.getPassword().equals(pass)) {
+
+					String loginsuccess = "成功";
+
+					HttpSession session = request.getSession();
+					session.setAttribute("loginsuccess", loginsuccess);
+					session.setAttribute("id", userId);
+					session.setAttribute("name", name);
+					session.setAttribute("pass", pass);
+
+					RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
+					rd.forward(request, response);
+
+				} else {
+					String error = "ユーザーIDまたはパスワードが正しくありません";
+					request.setAttribute("error", error);
+
+					RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
+					rd.forward(request, response);
+				}
+
+			} catch (ClassNotFoundException | SQLException e) {
+
+				e.printStackTrace();
+			}
 		}
 
 	}

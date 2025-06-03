@@ -9,14 +9,14 @@ import model.entity.UserBean;
 
 public class UserDAO {
 	
-	public UserBean logincheck(String userid) throws ClassNotFoundException, SQLException {
+	public UserBean logincheck(String userId) throws ClassNotFoundException, SQLException {
 		
 		String sql = "SELECT password, user_name FROM m_user WHERE user_id = ?";
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			
-			pstmt.setString(1, userid);
+			pstmt.setString(1, userId);
 			
 			ResultSet res = pstmt.executeQuery();
 			
