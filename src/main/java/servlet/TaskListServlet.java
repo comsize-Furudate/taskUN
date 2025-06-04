@@ -59,6 +59,7 @@ public class TaskListServlet extends HttpServlet {
 			session.setAttribute("connect", false);
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);
+			e.printStackTrace();
 		}
 	}
 

@@ -10,11 +10,11 @@
 
 	<h2>タスク一覧</h2>
 	<p style="text-align: right">
-		<%--=session.getAttribute("loginsuccess")--%>
+		
 		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
 	</p>
 	<%
-	boolean con = (boolean) session.getAttribute("Connect");
+	boolean con = (boolean) session.getAttribute("connect");
 	if (con) {
 		List<TaskBean> tbList = (List) session.getAttribute("taskList");
 		if (tbList.size() == 0) {
