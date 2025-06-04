@@ -1,40 +1,24 @@
 package model.entity;
 
-<<<<<<< HEAD
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
-public class TaskBean {
-=======
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TaskBean {
 	
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 	private int taskId;
 	private String taskName;
-	private int categoryId;
+	private int categoryCode;
 	private String categoryName;
 	private LocalDate limit;
-	private String userId;
+	private int userId;
 	private String statusName;
 	private int statusCode;
 	private String memo;
-<<<<<<< HEAD
-	private LocalDate createDateTime;
-	private LocalDate updateDateTime;
-
-	public TaskBean() {
-=======
 	private LocalDateTime createDatetime;
 	private LocalDateTime updateDateTime;
 	
 	public TaskBean() {
 		
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 	}
 
 	public int getTaskId() {
@@ -53,12 +37,12 @@ public class TaskBean {
 		this.taskName = taskName;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public int getCategoryCode() {
+		return categoryCode;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryCode(int categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
 	public String getCategoryName() {
@@ -73,20 +57,15 @@ public class TaskBean {
 		return limit;
 	}
 
-<<<<<<< HEAD
-	public void setLimit(Date limit) {
-		this.limit = LocalDate.ofInstant(limit.toInstant(), ZoneId.systemDefault());
-=======
 	public void setLimit(LocalDate limit) {
 		this.limit = limit;
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
@@ -114,30 +93,12 @@ public class TaskBean {
 		this.memo = memo;
 	}
 
-<<<<<<< HEAD
-	public LocalDate getCreateDateTime() {
-		return createDateTime;
-	}
-
-	public void setCreateDateTime(Date createDateTime) {
-		this.createDateTime = LocalDate.ofInstant(createDateTime.toInstant(), ZoneId.systemDefault());
-		;
-	}
-
-	public LocalDate getUpdateDateTime() {
-		return updateDateTime;
-	}
-
-public void setUpdateDateTime(Date updateDateTime) {
-	this.updateDateTime = LocalDate.ofInstant(updateDateTime.toInstant(), ZoneId.systemDefault());;
-}
-=======
 	public LocalDateTime getCreateDatetime() {
 		return createDatetime;
 	}
 
-	public void setCreateDatetime(Timestamp createDatetime2) {
-		this.createDatetime = createDatetime2;
+	public void setCreateDatetime(LocalDateTime createDatetime) {
+		this.createDatetime = createDatetime;
 	}
 
 	public LocalDateTime getUpdateDateTime() {
@@ -150,5 +111,4 @@ public void setUpdateDateTime(Date updateDateTime) {
 	
 	
 
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 }

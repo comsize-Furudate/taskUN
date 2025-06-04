@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8" import="model.entity.TaskBean,java.util.List"%>
+=======
+	pageEncoding="UTF-8"%>
+>>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +16,7 @@
 	<p style="text-align: right">
 		<%--=session.getAttribute("loginsuccess")--%>
 		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
+<<<<<<< HEAD
 	</p>
 	<%
 	boolean con = (boolean) session.getAttribute("Connect");
@@ -26,6 +31,10 @@
 	%>
 	<br>
 
+=======
+		<br>
+	</p>
+>>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 
 	<hr>
 
@@ -44,6 +53,7 @@
 			<th>更新日時</th>
 
 		</tr>
+<<<<<<< HEAD
 		<%
 		for (int i = 0; i < tbList.size(); i++) {
 			TaskBean tb = tbList.get(i);
@@ -82,6 +92,33 @@
 		</p>
 	</form>
 
+=======
+
+		<tr>
+
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+
+
+		</tr>
+
+	</table>
+	
+	<p>
+	<form action="menu.jsp" method="post">
+	
+	<input type="submit" value="メニューへ戻る">
+	
+	</form>
+	</p>
+>>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 
 </body>
 </html>
