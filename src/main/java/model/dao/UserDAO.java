@@ -32,7 +32,9 @@ public class UserDAO {
 				bean.setPassword(pass);
 				bean.setUserName(name);
 			}
+			
 			return bean;
+			
 		}
 		
 	}

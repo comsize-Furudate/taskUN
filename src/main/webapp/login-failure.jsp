@@ -11,9 +11,6 @@
 	<h2>ログイン失敗</h2>
 
 	<%=request.getAttribute("error")%><br>
-	
-
-
 
 	<a href="login.jsp">ログイン画面に戻る</a>
 
