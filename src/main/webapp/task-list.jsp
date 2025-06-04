@@ -12,9 +12,20 @@
 	<p style="text-align: right">
 		<%--=session.getAttribute("loginsuccess")--%>
 		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
-		<%List<TaskBean> tbList= (List)session.getAttribute("taskList"); %>
-		<br>
 	</p>
+	<%
+	boolean con = (boolean) session.getAttribute("Connect");
+	if (con) {
+		List<TaskBean> tbList = (List) session.getAttribute("taskList");
+		if (tbList.size() == 0) {
+	%>
+
+	<h1>タスクは現在ありません</h1>
+	<%
+	} else {
+	%>
+	<br>
+
 
 	<hr>
 
@@ -33,32 +44,44 @@
 			<th>更新日時</th>
 
 		</tr>
-		<%for(int i=0;i<tbList.size();i++){
-			TaskBean tb=tbList.get(i);%>
+		<%
+		for (int i = 0; i < tbList.size(); i++) {
+			TaskBean tb = tbList.get(i);
+		%>
 		<tr>
-			
-			<td><a href="taskDetailServlet?task_id=<%=tb.getTaskId() %>"><%=tb.getTaskId() %></a></td>
-			<td><%=tb.getTaskName() %></td>
-			<td><%=tb.getCategoryName() %></td>
-			<td><%=tb.getLimit() %></td>
-			<td><%=tb.getUserId() %></td>
-			<td><%=tb.getStatusName() %></td>
-			<td><%=tb.getMemo() %></td>
-			<td><%=tb.getCreateDateTime() %></td>
-			<td><%=tb.getUpdateDateTime() %></td>
+
+			<td><a href="taskDetailServlet?task_id=<%=tb.getTaskId()%>"><%=tb.getTaskId()%></a></td>
+			<td><%=tb.getTaskName()%></td>
+			<td><%=tb.getCategoryName()%></td>
+			<td><%=tb.getLimit()%></td>
+			<td><%=tb.getUserId()%></td>
+			<td><%=tb.getStatusName()%></td>
+			<td><%=tb.getMemo()%></td>
+			<td><%=tb.getCreateDateTime()%></td>
+			<td><%=tb.getUpdateDateTime()%></td>
 
 
-		</tr><%} %>
+		</tr>
+		<%
+		}
+		%>
 
 	</table>
-
+	<%
+	}
+	} else {
+	%>
+	<h1>データベースの接続に失敗しました</h1>
+	<%
+	}
+	%>
 	<p>
 	<form action="menu.jsp" method="post">
 
 		<input type="submit" value="メニューへ戻る">
 		</p>
 	</form>
-	
+
 
 </body>
 </html>

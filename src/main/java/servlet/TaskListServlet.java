@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.taskDAO;
+import model.dao.TaskDAO;
 import model.entity.TaskBean;
 
 /**
  * Servlet implementation class taskListServlet
  */
 @WebServlet("/task-list-servlet")
-public class taskListServlet extends HttpServlet {
+public class TaskListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public taskListServlet() {
+	public TaskListServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,17 +44,21 @@ public class taskListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		taskDAO tdao = new taskDAO();
+		TaskDAO tdao = new TaskDAO();
 		List<TaskBean> taskList;
 		try {
 			taskList = tdao.select();
 
 			HttpSession session = request.getSession();
 			session.setAttribute("taskList", taskList);
+			session.setAttribute("connect", true);
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			HttpSession session = request.getSession();
+			session.setAttribute("connect", false);
+			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
+			rd.forward(request, response);
 		}
 	}
 

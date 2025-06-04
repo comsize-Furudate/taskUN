@@ -82,6 +82,6 @@ public LocalDate getUpdateDateTime() {
 	return updateDateTime;
 }
 public void setUpdateDateTime(Date updateDateTime) {
-	this.updateDateTime = LocalDate.ofInstant(updateDateTime.toInstant(), ZoneId.systemDefault());;
+	this.updateDateTime = LocalDate.ofInstant(.toInstant(), ZoneId.systemDefault());;
 }
 }
