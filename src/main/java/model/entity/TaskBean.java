@@ -1,19 +1,13 @@
 package model.entity;
 
-<<<<<<< HEAD
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
-
-public class TaskBean {
-=======
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-public class TaskBean {
-	
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
+	public class TaskBean {
+
 	private int taskId;
 	private String taskName;
 	private int categoryId;
@@ -23,20 +17,10 @@ public class TaskBean {
 	private String statusName;
 	private int statusCode;
 	private String memo;
-<<<<<<< HEAD
 	private LocalDate createDateTime;
 	private LocalDate updateDateTime;
-
-	public TaskBean() {
-=======
 	private LocalDateTime createDatetime;
-	private LocalDateTime updateDateTime;
 	
-	public TaskBean() {
-		
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
-	}
-
 	public int getTaskId() {
 		return taskId;
 	}
