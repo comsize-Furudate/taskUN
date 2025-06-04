@@ -16,7 +16,7 @@ import model.entity.TaskBean;
  * Servlet implementation class taskDetailServlet
  */
 @WebServlet("/taskDetailServlet")
-public class TaskDetailServlet extends HttpServlet {
+public class taskDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
