@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,15 +38,40 @@ public class taskDetailServlet extends HttpServlet {
 		List<TaskBean>tbList=(List)session.getAttribute("taskList");
 				
 		TaskBean tb=tbList.get(i-1);
-		
+		String loginID=(String)session.getAttribute("id");
+		boolean check;
+		if(loginID.equals(tb.getUserId())) {
+			check=true;
+		}else {
+			check=false;
+		}
+		session.setAttribute("check", check);
+		session.setAttribute("detail", tb);
+		RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		int i=Integer.parseInt(request.getParameter("task_id"));
+		HttpSession session =request.getSession();
+		List<TaskBean>tbList=(List)session.getAttribute("taskList");
+				
+		TaskBean tb=tbList.get(i-1);
+		String loginID=(String)session.getAttribute("id");
+		boolean check;
+		if(loginID.equals(tb.getUserId())) {
+			check=true;
+		}else {
+			check=false;
+		}
+		session.setAttribute("check", check);
+		session.setAttribute("detail", tb);
+		RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
+		rd.forward(request, response);
 	}
 
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="model.entity.TaskBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +13,10 @@
 		<%--=session.getAttribute("loginsuccess")--%>
 		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
 		<br>
+		<%
+		TaskBean tb = (TaskBean) session.getAttribute("detail");
+		boolean check = (boolean) session.getAttribute("check");
+		%>
 	</p>
 
 	<hr>
@@ -22,63 +26,66 @@
 		<tr>
 
 			<th>ID</th>
-			<td></td>
+			<td><%=tb.getTaskId()%></td>
 
 		</tr>
 		<tr>
 
 			<th>タスク名</th>
-			<td></td>
+			<td><%=tb.getTaskName()%></td>
 
 		</tr>
 		<tr>
 
 			<th>カテゴリ名</th>
-			<td></td>
+			<td><%=tb.getCategoryName()%></td>
 
 		</tr>
 		<tr>
 
 			<th>期限</th>
-			<td></td>
+			<td><%=tb.getLimit()%></td>
 
 		</tr>
 		<tr>
 
 			<th>ユーザーID</th>
-			<td></td>
+			<td><%=tb.getUserId()%></td>
 
 		</tr>
 		<tr>
 
 			<th>ステータス</th>
-			<td></td>
+			<td><%=tb.getStatusName()%></td>
 
 		</tr>
 		<tr>
 
 			<th>メモ</th>
-			<td></td>
+			<td><%=tb.getMemo()%></td>
 
 		</tr>
 		<tr>
 
 			<th>登録日時</th>
-			<td></td>
+			<td><%=tb.getCreateDateTime()%></td>
 
 		</tr>
 		<tr>
 
 			<th>更新日時</th>
-			<td></td>
+			<td><%=tb.getUpdateDateTime()%></td>
 
 		</tr>
 
 	</table>
-	
-	<p><div style="display:inline-flex">
-	
-	<form action="task-edit.jsp" method="post">
+
+	<p>
+	<div style="display: inline-flex">
+		<%
+		if (check) {
+		%>
+		<form action="task-edit.jsp" method="post">
 
 			<input type="submit" value="編集する">
 
@@ -89,15 +96,18 @@
 			<input type="submit" value="削除する">
 
 		</form>
-
+		<%
+		}
+		%>
 		<form action="task-list.jsp" method="post">
 
 			<input type="submit" value="一覧へ戻る">
 
 		</form>
-		
-		</div></p>
-	
+
+	</div>
+	</p>
+
 
 </body>
 </html>
