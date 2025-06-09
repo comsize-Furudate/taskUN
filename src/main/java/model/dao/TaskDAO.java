@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +32,17 @@ public class TaskDAO {
 			}
 			return taskList;
 		}
+	}
+	
+	public int delete(int taskId) throws SQLException, ClassNotFoundException {
+		String sql="delete　t_task,t_comment  from t_task t1 join t_comment t2 on t1.task_id=t2.task_id where task_id=?";
+		int count=0;
+		try(Connection con=ConnectionManager.getConnection();
+				PreparedStatement pstmt=con.prepareStatement(sql)){
+			pstmt.setInt(1, taskId);
+			count=pstmt.executeUpdate();
+		}
+		return count;
 	}
 
 }
