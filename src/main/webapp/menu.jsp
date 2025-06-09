@@ -19,11 +19,8 @@
 <hr>
 
 <p>
-<<<<<<< HEAD
+
 <form action="task-list-servlet" method="post">
-=======
-<form="task-list-servlet" method="post">
->>>>>>> d76b576c85ad9efd6f9b70c66d3feff91417e333
 
 <input type ="submit" value="タスク一覧表示">
 
