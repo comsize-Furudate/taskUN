@@ -76,9 +76,10 @@ public class LoginServlet extends HttpServlet {
 
 				if (userbean.getPassword().equals(pass)) {
 
-	
+					String loginsuccess = "成功";
 
 					HttpSession session = request.getSession();
+					session.setAttribute("loginsuccess", loginsuccess);
 					session.setAttribute("id", userId);
 					session.setAttribute("name", name);
 					session.setAttribute("pass", pass);
