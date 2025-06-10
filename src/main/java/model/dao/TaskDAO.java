@@ -44,5 +44,13 @@ public class TaskDAO {
 		}
 		return count;
 	}
+	
+	public int insert(TaskBean taskBean) {
+		int count = 0;
+		
+		String sql = "insert into t_task task_id,task_name,category_id,"
+				+ "";
+		return count;
+	}
 
 }
