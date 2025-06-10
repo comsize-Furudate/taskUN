@@ -19,31 +19,32 @@ import model.entity.TaskBean;
 @WebServlet("/taskDetailServlet")
 public class taskDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public taskDetailServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public taskDetailServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int i=Integer.parseInt(request.getParameter("task_id"));
-		HttpSession session =request.getSession();
-		List<TaskBean>tbList=(List)session.getAttribute("taskList");
-				
-		TaskBean tb=tbList.get(i-1);
-		String loginID=(String)session.getAttribute("id");
+		int i = Integer.parseInt(request.getParameter("task_id"));
+		HttpSession session = request.getSession();
+		List<TaskBean> tbList = (List) session.getAttribute("taskList");
+
+		TaskBean tb = tbList.get(i - 1);
+		String loginID = (String) session.getAttribute("id");
 		boolean check;
-		if(loginID.equals(tb.getUserId())) {
-			check=true;
-		}else {
-			check=false;
+		if (loginID.equals(tb.getUserId())) {
+			check = true;
+		} else {
+			check = false;
 		}
 		session.setAttribute("check", check);
 		session.setAttribute("detail", tb);
@@ -54,19 +55,20 @@ public class taskDetailServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int i=Integer.parseInt(request.getParameter("task_id"));
-		HttpSession session =request.getSession();
-		List<TaskBean>tbList=(List)session.getAttribute("taskList");
-				
-		TaskBean tb=tbList.get(i-1);
-		String loginID=(String)session.getAttribute("id");
+		int i = Integer.parseInt(request.getParameter("task_id"));
+		HttpSession session = request.getSession();
+		List<TaskBean> tbList = (List) session.getAttribute("taskList");
+
+		TaskBean tb = tbList.get(i - 1);
+		String loginID = (String) session.getAttribute("id");
 		boolean check;
-		if(loginID.equals(tb.getUserId())) {
-			check=true;
-		}else {
-			check=false;
+		if (loginID.equals(tb.getUserId())) {
+			check = true;
+		} else {
+			check = false;
 		}
 		session.setAttribute("check", check);
 		session.setAttribute("detail", tb);

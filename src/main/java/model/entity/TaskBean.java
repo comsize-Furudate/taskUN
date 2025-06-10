@@ -2,7 +2,6 @@ package model.entity;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class TaskBean {
 	private int taskId;
@@ -57,7 +56,7 @@ public class TaskBean {
 	}
 
 	public void setLimit(Date limit) {
-		this.limit = LocalDate.ofInstant(limit.toInstant(), ZoneId.systemDefault());
+		this.limit = limit.toLocalDate();
 	}
 
 	public String getUserId() {
@@ -97,15 +96,14 @@ public class TaskBean {
 	}
 
 	public void setCreateDateTime(Date createDateTime) {
-		this.createDateTime = LocalDate.ofInstant(createDateTime.toInstant(), ZoneId.systemDefault());
-		;
+		this.createDateTime = createDateTime.toLocalDate();
 	}
 
 	public LocalDate getUpdateDateTime() {
 		return updateDateTime;
 	}
 
-public void setUpdateDateTime(Date updateDateTime) {
-	this.updateDateTime = LocalDate.ofInstant(updateDateTime.toInstant(), ZoneId.systemDefault());;
-}
+	public void setUpdateDateTime(Date updateDateTime) {
+		this.updateDateTime = updateDateTime.toLocalDate();
+	}
 }

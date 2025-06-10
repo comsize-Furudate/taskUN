@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="model.entity.TaskBean,java.util.List"%>
+	pageEncoding="UTF-8"
+	import="model.entity.TaskBean,java.util.List,java.util.Objects"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
 	</p>
 	<%
-	boolean con = (boolean) session.getAttribute("Connect");
+	boolean con = (boolean) session.getAttribute("connect");
 	if (con) {
 		List<TaskBean> tbList = (List) session.getAttribute("taskList");
 		if (tbList.size() == 0) {
@@ -56,7 +57,16 @@
 			<td><%=tb.getLimit()%></td>
 			<td><%=tb.getUserId()%></td>
 			<td><%=tb.getStatusName()%></td>
-			<td><%=tb.getMemo()%></td>
+			<td>
+				<%
+				if (Objects.nonNull(tb.getMemo())) {
+				%><%=tb.getMemo()%>
+				<%
+				} else {
+				%>未入力<%
+				}
+				%>
+			</td>
 			<td><%=tb.getCreateDateTime()%></td>
 			<td><%=tb.getUpdateDateTime()%></td>
 

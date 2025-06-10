@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -54,7 +55,8 @@ public class TaskListServlet extends HttpServlet {
 			session.setAttribute("connect", true);
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | ParseException e) {
+			e.printStackTrace();
 			HttpSession session = request.getSession();
 			session.setAttribute("connect", false);
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
