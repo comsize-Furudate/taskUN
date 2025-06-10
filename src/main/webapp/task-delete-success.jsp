@@ -22,8 +22,8 @@
 	<h1>タスク削除完了</h1>
 	<h2>タスクの削除が完了しました</h2>
 
-	<form action="menu.jsp" method="get">
-	<input type="submit" value="メニュー画面に戻る">
+	<form action = "menu.jsp" method = "get">
+	<input type = "submit" value = "メニュー画面に戻る">
 	</form>
 <%} %>
 </body>

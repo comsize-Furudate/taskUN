@@ -30,11 +30,13 @@
 		<td><%bean.getMemo(); %></td>
 	</tr>
 </table>
-<form action="task-delete-servlet" method="post">
-<input type="submit" value="削除する">
+<div style = "display:inline-flex">
+<form action = "task-delete-servlet" method = "post">
+<input type = "submit" value = "削除する">
 </form>
-<form action="detail.jsp" method="get">
-<input type="submit" value="詳細に戻る">
+<form action = "detail.jsp" method = "get">
+<input type = "submit" value = "詳細に戻る">
 </form>
+</div>
 </body>
 </html>

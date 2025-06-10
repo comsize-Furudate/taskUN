@@ -33,7 +33,7 @@ public class TaskDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -42,31 +42,31 @@ public class TaskDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 	request.setCharacterEncoding("utf-8");
-		 	HttpSession session=request.getSession();
+		 	HttpSession session = request.getSession();
 		 	//セッションチェック
-		 	if(session.getAttribute("id")==null) {
-		 		RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+		 	if(session.getAttribute("id") == null) {
+		 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		 		rd.forward(request, response);
 		 		
 		 	}
 		 	//削除するタスクのタスクIDを受け取る
-		 	TaskBean bean=(TaskBean)session.getAttribute("detail");
-		 	int taskId=bean.getTaskId();
+		 	TaskBean bean = (TaskBean)session.getAttribute("detail");
+		 	int taskId = bean.getTaskId();
 		 	//削除を行う
-		 	TaskDAO dao=new TaskDAO();
-		 	int deleteResult=0;//deleteの戻り値入れる変数
+		 	TaskDAO dao = new TaskDAO();
+		 	int deleteResult = 0;//deleteの戻り値入れる変数
 		 	try {
-				deleteResult=dao.delete(taskId);
+				deleteResult = dao.delete(taskId);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
 		 	//結果分岐
-		 	if(deleteResult!=0) {
-		 		RequestDispatcher rd =request.getRequestDispatcher("task-delete-success.jsp");
+		 	if(deleteResult != 0) {
+		 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-success.jsp");
 		 		rd.forward(request, response);
 		 	}else {
-		 		RequestDispatcher rd =request.getRequestDispatcher("task-delete-failure.jsp");
+		 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
 		 		rd.forward(request, response);
 		 	}
 		 	
