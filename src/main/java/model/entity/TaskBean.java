@@ -2,6 +2,8 @@ package model.entity;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class TaskBean {
 	private int taskId;
@@ -56,7 +58,13 @@ public class TaskBean {
 	}
 
 	public void setLimit(Date limit) {
-		this.limit = limit.toLocalDate();
+		try {
+			this.limit = limit.toLocalDate();
+		} catch (NullPointerException e) {
+			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+			        .parse("2019/01/01", LocalDate::from);
+			this.limit=targetDate;
+		}
 	}
 
 	public String getUserId() {
@@ -88,7 +96,11 @@ public class TaskBean {
 	}
 
 	public void setMemo(String memo) {
-		this.memo = memo;
+		if(Objects.nonNull(memo)) {
+			this.memo = memo;
+		}else {
+			this.memo="未入力";
+		}
 	}
 
 	public LocalDate getCreateDateTime() {

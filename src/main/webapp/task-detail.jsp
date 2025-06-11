@@ -1,5 +1,6 @@
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="model.entity.TaskBean"%>
+	pageEncoding="UTF-8" import="model.entity.TaskBean,java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,16 @@
 		<tr>
 
 			<th>期限</th>
-			<td><%=tb.getLimit()%></td>
+			<td><%
+				LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+						.parse("2019/01/01", LocalDate::from);
+				if (tb.getLimit().isEqual(targetDate)) {
+				%> 未入力<%
+				} else {
+				%> <%=tb.getLimit()%>
+				<%
+				}
+				%></td>
 
 		</tr>
 		<tr>

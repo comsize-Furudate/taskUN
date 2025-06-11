@@ -24,7 +24,7 @@ public class TaskDAO {
 				t.setTaskName(res.getString("t1.task_name"));
 				t.setCategoryName(res.getString("t2.category_name"));
 				t.setUserId(res.getString("t1.user_id"));
-				t.setLimit(res.getDate("t1.limit_date"));
+				t.setLimit(res.getDate("t1.limit_date"));				
 				t.setStatusName(res.getString("t3.status_name"));
 				t.setMemo(res.getString("t1.memo"));
 				t.setCreateDateTime(res.getDate("t1.create_datetime"));

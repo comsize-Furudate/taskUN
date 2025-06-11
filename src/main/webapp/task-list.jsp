@@ -1,6 +1,7 @@
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="model.entity.TaskBean,java.util.List,java.util.Objects"%>
+	import="model.entity.TaskBean,java.util.List,java.util.Objects,java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,18 +55,28 @@
 			<td><a href="taskDetailServlet?task_id=<%=tb.getTaskId()%>"><%=tb.getTaskId()%></a></td>
 			<td><%=tb.getTaskName()%></td>
 			<td><%=tb.getCategoryName()%></td>
-			<td><%=tb.getLimit()%></td>
+			<td>
+				<%
+				LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+						.parse("2019/01/01", LocalDate::from);
+				if (tb.getLimit().isEqual(targetDate)) {
+				%> 未入力<%
+				} else {
+				%> <%=tb.getLimit()%>
+				<%
+				}
+				%>
+			</td>
 			<td><%=tb.getUserId()%></td>
 			<td><%=tb.getStatusName()%></td>
 			<td>
 				<%
 				if (Objects.nonNull(tb.getMemo())) {
-				%><%=tb.getMemo()%>
-				<%
-				} else {
-				%>未入力<%
-				}
-				%>
+				%><%=tb.getMemo()%> <%
+ } else {
+ %>未入力<%
+ }
+ %>
 			</td>
 			<td><%=tb.getCreateDateTime()%></td>
 			<td><%=tb.getUpdateDateTime()%></td>

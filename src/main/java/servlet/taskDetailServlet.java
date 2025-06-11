@@ -37,8 +37,14 @@ public class taskDetailServlet extends HttpServlet {
 		int i = Integer.parseInt(request.getParameter("task_id"));
 		HttpSession session = request.getSession();
 		List<TaskBean> tbList = (List) session.getAttribute("taskList");
-
-		TaskBean tb = tbList.get(i - 1);
+		
+		TaskBean tb=new TaskBean();
+		for(TaskBean tbean:tbList) {
+			if(tbean.getTaskId()==i) {
+				tb=tbean;
+				break;
+			}
+		}
 		String loginID = (String) session.getAttribute("id");
 		boolean check;
 		if (loginID.equals(tb.getUserId())) {
