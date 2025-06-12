@@ -12,8 +12,8 @@
 
 <form action="login-servlet" method="post">
 
-ユーザーID:<input type="text" name="userId"><br>
-パスワード：<input type="text" name="password">
+ユーザーID：<input type="text" name="userId"><br>
+パスワード：<input type="password" name="password">
 
 <p>
 

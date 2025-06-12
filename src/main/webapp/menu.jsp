@@ -8,35 +8,28 @@
 </head>
 <body>
 
+	
+
+	
+
+	<%try {
+	
+		if(!(session.getAttribute("msg")).equals(null)){
+			String msg = (String)session.getAttribute("msg");
+			
+	%>
+	
 	<script type="text/javascript">
-
-	const isFirstLoad = sessionStorage.getItem('isFirstLoad');
-	window.addEventListener('load', function() {
-
-		 if (!isFirstLoad) {
-
-	<%
-	String msg = (String)session.getAttribute("msg");
-	if(msg.equals(null)){
-	%>
-	
-	
-	<%}else{ 
-	%>
-		
-	
 	    var msg = "<%=msg%>";
 			alert(msg);
-	
-	
-	<%}%>
-	
-	sessionStorage.setItem('isFirstLoad', true);
-	} else {}
-	
 	</script>
 
+	<%	}
+	}catch(NullPointerException e){
+		
+	%>
 
+	<%} %>
 
 	<h2>メニュー</h2>
 	<p style="text-align: right">
@@ -70,6 +63,8 @@
 		<input type="submit" value="ログアウト">
 
 	</form>
+	
+	
 
 </body>
 </html>

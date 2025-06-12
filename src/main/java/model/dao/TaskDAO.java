@@ -36,9 +36,10 @@ public class TaskDAO {
 		}
 	}
 	
-	public TaskBean limit(String userId) throws SQLException, ClassNotFoundException, ParseException ,NullPointerException {
+	public List<TaskBean> limit(String userId) throws SQLException, ClassNotFoundException, ParseException ,NullPointerException {
 		
 		String sql = "SELECT limit_date FROM t_task WHERE user_id=?";
+		List<TaskBean> limitList = new ArrayList<>();
 		
 		
 		try(PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql)) {
@@ -54,9 +55,10 @@ public class TaskDAO {
 				tb = new TaskBean();
 
 				tb.setLimit(res.getDate("limit_date"));
+				limitList.add(tb);
 				
 			}
-			return tb;
+			return limitList;
 		}
 		
 		
