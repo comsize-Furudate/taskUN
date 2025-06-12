@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
 import model.entity.TaskBean;
 
 public class TaskDAO {
@@ -61,7 +63,7 @@ public class TaskDAO {
 			pstmt.setInt(2, taskBean.getCategoryId());
 			pstmt.setDate(3, Date.valueOf(taskBean.getLimit()));
 			pstmt.setString(4, taskBean.getUserId());
-			pstmt.setInt(5,taskBean.getStatusCode());
+			pstmt.setString(5,taskBean.getStatusCode());
 			pstmt.setString(6, taskBean.getMemo());
 			pstmt.setTimestamp(7,Timestamp.valueOf(taskBean.getCreateDateTime()) );
 			
@@ -70,5 +72,43 @@ public class TaskDAO {
 		
 		return count;
 	}
+	
+	public List<CategoryBean> selectAllCategory() throws SQLException, ClassNotFoundException{
+		String sql = "select category_id,category_name from m_category";
+		List<CategoryBean> categoryList = new ArrayList<CategoryBean>();
+		try(Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			ResultSet res=pstmt.executeQuery();
+			while(res.next()) {
+				CategoryBean cb = new CategoryBean();
+				cb.setCategoryId(res.getInt("category_id"));
+				cb.setCategoryName(res.getString("category_name"));
+				categoryList.add(cb);
+			}
+			
+		}
+		return categoryList;
+	}
+	
+	public List<StatusBean> selectAllStatus() throws SQLException, ClassNotFoundException{
+		String sql = "select status_code,status_name from m_category";
+		List<StatusBean> statusList = new ArrayList<StatusBean>();
+		try(Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			ResultSet res=pstmt.executeQuery();
+			while(res.next()) {
+				StatusBean sb = new StatusBean();
+				sb.setStatusCode(res.getString("category_id"));
+				sb.setStatusName(res.getString("category_name"));
+				statusList.add(sb);
+			}
+			
+		}
+		return statusList;
+	}
+	
+	
 
 }
