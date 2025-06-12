@@ -27,7 +27,6 @@ class TaskDAOTest {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 }
