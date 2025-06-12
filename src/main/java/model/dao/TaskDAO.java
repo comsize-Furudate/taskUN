@@ -1,9 +1,11 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +47,27 @@ public class TaskDAO {
 		return count;
 	}
 	
-	public int insert(TaskBean taskBean) {
+	public int insert(TaskBean taskBean) throws ClassNotFoundException, SQLException {
 		int count = 0;
 		
-		String sql = "insert into t_task task_id,task_name,category_id,"
-				+ "";
+		String sql = "insert into t_task values task_name,category_id,"
+				+ "limit_date,user_id,status_code,memo,"
+				+ "create_datetime values (?,?,?,?,?,?,?)";
+		try(Connection con=ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			
+			pstmt.setString(1, taskBean.getTaskName());
+			pstmt.setInt(2, taskBean.getCategoryId());
+			pstmt.setDate(3, Date.valueOf(taskBean.getLimit()));
+			pstmt.setString(4, taskBean.getUserId());
+			pstmt.setInt(5,taskBean.getStatusCode());
+			pstmt.setString(6, taskBean.getMemo());
+			pstmt.setTimestamp(7,Timestamp.valueOf(taskBean.getCreateDateTime()) );
+			
+			count = pstmt.executeUpdate();
+		}
+		
 		return count;
 	}
 
