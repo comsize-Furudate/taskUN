@@ -9,6 +9,9 @@ public class CategoryBean implements Serializable{
 	private String categoryName;
 	private LocalDateTime updateDateTime;
 	
+	public CategoryBean() {
+		
+	}
 	public int getCategoryId() {
 		return categoryId;
 	}

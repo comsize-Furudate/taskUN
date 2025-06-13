@@ -8,6 +8,10 @@ public class StatusBean implements Serializable{
 	private String statusName;
 	private LocalDateTime updateDateTime;
 	
+	public StatusBean() {
+		
+	}
+	
 	public String getStatusCode() {
 		return statusCode;
 	}

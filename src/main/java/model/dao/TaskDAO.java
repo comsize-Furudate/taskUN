@@ -52,9 +52,9 @@ public class TaskDAO {
 	public int insert(TaskBean taskBean) throws ClassNotFoundException, SQLException {
 		int count = 0;
 		
-		String sql = "insert into t_task values task_name,category_id,"
+		String sql = "insert into t_task  (task_name,category_id,"
 				+ "limit_date,user_id,status_code,memo,"
-				+ "create_datetime values (?,?,?,?,?,?,?)";
+				+ "create_datetime) values (?,?,?,?,?,?,?)";
 		try(Connection con=ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			
@@ -92,7 +92,7 @@ public class TaskDAO {
 	}
 	
 	public List<StatusBean> selectAllStatus() throws SQLException, ClassNotFoundException{
-		String sql = "select status_code,status_name from m_category";
+		String sql = "select status_code,status_name from m_status";
 		List<StatusBean> statusList = new ArrayList<StatusBean>();
 		try(Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -100,8 +100,8 @@ public class TaskDAO {
 			ResultSet res=pstmt.executeQuery();
 			while(res.next()) {
 				StatusBean sb = new StatusBean();
-				sb.setStatusCode(res.getString("category_id"));
-				sb.setStatusName(res.getString("category_name"));
+				sb.setStatusCode(res.getString("status_code"));
+				sb.setStatusName(res.getString("status_name"));
 				statusList.add(sb);
 			}
 			

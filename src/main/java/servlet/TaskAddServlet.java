@@ -96,9 +96,11 @@ public class TaskAddServlet extends HttpServlet {
 			TaskBean taskBean = new TaskBean();
 			taskBean.setTaskName(taskName);
 			taskBean.setCategoryId(categoryId);
+			
 			if(limit != null) {
 				LocalDate limit2 = LocalDate.parse(limit);
-				if(limit2.isBefore((LocalDate)session.getAttribute("today"))){
+				LocalDate limit3=(LocalDate)session.getAttribute("today");
+				if(limit3.isBefore(limit2)){
 					taskBean.setLimit(limit2);
 				}else {
 					RequestDispatcher rd = request.getRequestDispatcher("task-add-failure.jsp");

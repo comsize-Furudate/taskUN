@@ -48,7 +48,7 @@
 	</tr>
 	<tr>
 		<th>メモ</th>
-		<td><textarea rows ="4" cols = "25" maxlength = "100"></textarea></td>
+		<td><textarea name = "memo" rows ="4" cols = "25" maxlength = "100" ></textarea></td>
 	</tr>
 </table>
 <input type = "submit" value = "登録実行">
