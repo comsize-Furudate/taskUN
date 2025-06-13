@@ -1,11 +1,14 @@
 package model.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class TaskBean {
+public class TaskBean implements Serializable{
 	private int taskId;
 	private String taskName;
 	private int categoryId;
@@ -13,10 +16,10 @@ public class TaskBean {
 	private LocalDate limit;
 	private String userId;
 	private String statusName;
-	private int statusCode;
+	private String statusCode;
 	private String memo;
-	private LocalDate createDateTime;
-	private LocalDate updateDateTime;
+	private LocalDateTime createDateTime;
+	private LocalDateTime updateDateTime;
 
 	public TaskBean() {
 	}
@@ -62,8 +65,18 @@ public class TaskBean {
 			this.limit = limit.toLocalDate();
 		} catch (NullPointerException e) {
 			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-			        .parse("2019/01/01", LocalDate::from);
-			this.limit=targetDate;
+					.parse("2019/01/01", LocalDate::from);
+			this.limit = targetDate;
+		}
+	}
+
+	public void setLimit(LocalDate limit) {
+		if (Objects.nonNull(limit)) {
+			this.limit = limit;
+		} else {
+			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+					.parse("2019/01/01", LocalDate::from);
+			this.limit = targetDate;
 		}
 	}
 
@@ -83,11 +96,11 @@ public class TaskBean {
 		this.statusName = statusName;
 	}
 
-	public int getStatusCode() {
+	public String getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(int statusCode) {
+	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
 	}
 
@@ -96,26 +109,30 @@ public class TaskBean {
 	}
 
 	public void setMemo(String memo) {
-		if(Objects.nonNull(memo)) {
+		if (Objects.nonNull(memo)) {
 			this.memo = memo;
-		}else {
-			this.memo="未入力";
+		} else {
+			this.memo = "未入力";
 		}
 	}
 
-	public LocalDate getCreateDateTime() {
+	public LocalDateTime getCreateDateTime() {
 		return createDateTime;
 	}
 
-	public void setCreateDateTime(Date createDateTime) {
-		this.createDateTime = createDateTime.toLocalDate();
+	public void setCreateDateTime(Timestamp createDateTime) {
+		this.createDateTime = createDateTime.toLocalDateTime();
 	}
 
-	public LocalDate getUpdateDateTime() {
+	public void setCreateDateTime(LocalDateTime createDatetime) {
+		this.createDateTime = createDateTime;
+	}
+
+	public LocalDateTime getUpdateDateTime() {
 		return updateDateTime;
 	}
 
-	public void setUpdateDateTime(Date updateDateTime) {
-		this.updateDateTime = updateDateTime.toLocalDate();
+	public void setUpdateDateTime(Timestamp updateDateTime) {
+		this.updateDateTime = updateDateTime.toLocalDateTime();
 	}
 }
