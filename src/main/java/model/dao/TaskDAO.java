@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +29,8 @@ public class TaskDAO {
 				t.setLimit(res.getDate("t1.limit_date"));
 				t.setStatusName(res.getString("t3.status_name"));
 				t.setMemo(res.getString("t1.memo"));
-				t.setCreateDateTime(res.getDate("t1.create_datetime"));
-				t.setUpdateDateTime(res.getDate("t1.update_datetime"));
+				t.setCreateDateTime(res.getTimestamp("t1.create_datetime"));
+				t.setUpdateDateTime(res.getTimestamp("t1.update_datetime"));
 				taskList.add(t);
 			}
 			return taskList;
@@ -53,8 +52,8 @@ public class TaskDAO {
 		int count = 0;
 		
 		String sql = "insert into t_task  (task_name,category_id,"
-				+ "limit_date,user_id,status_code,memo,"
-				+ "create_datetime) values (?,?,?,?,?,?,?)";
+				+ "limit_date,user_id,status_code,memo"
+				+ ") values (?,?,?,?,?,?)";
 		try(Connection con=ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			
@@ -65,7 +64,7 @@ public class TaskDAO {
 			pstmt.setString(4, taskBean.getUserId());
 			pstmt.setString(5,taskBean.getStatusCode());
 			pstmt.setString(6, taskBean.getMemo());
-			pstmt.setTimestamp(7,Timestamp.valueOf(taskBean.getCreateDateTime()) );
+//			pstmt.setTimestamp(7,Timestamp.valueOf(taskBean.getCreateDateTime()) );
 			
 			count = pstmt.executeUpdate();
 		}

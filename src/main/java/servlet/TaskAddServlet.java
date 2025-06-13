@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.TaskDAO;
+import model.dao.UserDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
@@ -107,12 +107,17 @@ public class TaskAddServlet extends HttpServlet {
 					rd.forward(request, response);
 				}	
 			}else {
-				taskBean.setLimit(null);
+				taskBean.setLimit((LocalDate)null);
 			}
 			taskBean.setStatusCode(statusCode);
-			taskBean.setUserId(userId);
+			if(new UserDAO().logincheck(userId)!=null) {
+				taskBean.setUserId(userId);
+			}else {
+				throw new SQLException();
+			}
+			
 			taskBean.setMemo(memo);
-			taskBean.setCreateDateTime(LocalDateTime.now());
+			//taskBean.setCreateDateTime(LocalDateTime.now());
 			
 			//登録実行
 			TaskDAO dao = new TaskDAO();

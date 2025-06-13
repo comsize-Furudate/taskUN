@@ -1,6 +1,8 @@
 package model.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,12 +60,22 @@ public class TaskBean implements Serializable{
 		return limit;
 	}
 
-	public void setLimit(LocalDate limit) {
-		if(limit != null) {
-			this.limit = limit;
-		} else{
+	public void setLimit(Date limit) {
+		try {
+			this.limit = limit.toLocalDate();
+		} catch (NullPointerException e) {
 			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-			        .parse("2019/01/01", LocalDate::from);
+					.parse("2019/01/01", LocalDate::from);
+			this.limit = targetDate;
+		}
+	}
+
+	public void setLimit(LocalDate limit) {
+		if (Objects.nonNull(limit)) {
+			this.limit = limit;
+		} else {
+			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+					.parse("2019/01/01", LocalDate::from);
 			this.limit = targetDate;
 		}
 	}
@@ -97,10 +109,10 @@ public class TaskBean implements Serializable{
 	}
 
 	public void setMemo(String memo) {
-		if(Objects.nonNull(memo)) {
+		if (Objects.nonNull(memo)) {
 			this.memo = memo;
-		}else {
-			this.memo="未入力";
+		} else {
+			this.memo = "未入力";
 		}
 	}
 
@@ -108,7 +120,11 @@ public class TaskBean implements Serializable{
 		return createDateTime;
 	}
 
-	public void setCreateDateTime(LocalDateTime createDateTime) {
+	public void setCreateDateTime(Timestamp createDateTime) {
+		this.createDateTime = createDateTime.toLocalDateTime();
+	}
+
+	public void setCreateDateTime(LocalDateTime createDatetime) {
 		this.createDateTime = createDateTime;
 	}
 
@@ -116,7 +132,7 @@ public class TaskBean implements Serializable{
 		return updateDateTime;
 	}
 
-	public void setUpdateDateTime(LocalDateTime updateDateTime) {
-		this.updateDateTime = updateDateTime;
+	public void setUpdateDateTime(Timestamp updateDateTime) {
+		this.updateDateTime = updateDateTime.toLocalDateTime();
 	}
 }
