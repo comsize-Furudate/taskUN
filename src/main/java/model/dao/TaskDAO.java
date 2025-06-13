@@ -28,8 +28,8 @@ public class TaskDAO {
 				t.setLimit(res.getDate("t1.limit_date"));				
 				t.setStatusName(res.getString("t3.status_name"));
 				t.setMemo(res.getString("t1.memo"));
-				t.setCreateDateTime(res.getDate("t1.create_datetime"));
-				t.setUpdateDateTime(res.getDate("t1.update_datetime"));
+				t.setCreateDateTime(res.getTimestamp("t1.create_datetime"));
+				t.setUpdateDateTime(res.getTimestamp("t1.update_datetime"));
 				taskList.add(t);
 			}
 			return taskList;

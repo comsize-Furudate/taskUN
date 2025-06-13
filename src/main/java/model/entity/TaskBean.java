@@ -1,7 +1,9 @@
 package model.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -15,8 +17,8 @@ public class TaskBean {
 	private String statusName;
 	private int statusCode;
 	private String memo;
-	private LocalDate createDateTime;
-	private LocalDate updateDateTime;
+	private LocalDateTime createDateTime;
+	private LocalDateTime updateDateTime;
 
 	public TaskBean() {
 	}
@@ -112,22 +114,22 @@ public class TaskBean {
 		}
 	}
 
-	public LocalDate getCreateDateTime() {
+	public LocalDateTime getCreateDateTime() {
 		return createDateTime;
 	}
 
-	public void setCreateDateTime(Date createDateTime) {
-		this.createDateTime = createDateTime.toLocalDate();
+	public void setCreateDateTime(Timestamp createDateTime) {
+		this.createDateTime = createDateTime.toLocalDateTime();
 	}
-	public void setCreateDateTime(LocalDate createDatetime) {
+	public void setCreateDateTime(LocalDateTime createDatetime) {
 		this.createDateTime=createDateTime;
 	}
 
-	public LocalDate getUpdateDateTime() {
+	public LocalDateTime getUpdateDateTime() {
 		return updateDateTime;
 	}
 
-	public void setUpdateDateTime(Date updateDateTime) {
-		this.updateDateTime = updateDateTime.toLocalDate();
+	public void setUpdateDateTime(Timestamp updateDateTime) {
+		this.updateDateTime = updateDateTime.toLocalDateTime();
 	}
 }
