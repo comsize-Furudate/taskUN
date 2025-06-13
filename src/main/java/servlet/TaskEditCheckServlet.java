@@ -66,7 +66,7 @@ public class TaskEditCheckServlet extends HttpServlet {
 			newtb.setLimit(targetDate);
 		}
 		String[] statuses=request.getParameter("status_name").split(",", 2);
-		newtb.setStatusCode(Integer.parseInt(statuses[0]));
+		newtb.setStatusCode(statuses[0]);
 		newtb.setStatusName(statuses[1]);
 		if(request.getParameter("task_name").equals("")) {
 			newtb.setTaskName(tb.getTaskName());

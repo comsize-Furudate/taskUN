@@ -44,7 +44,7 @@ public class TaskDAO {
 			pstmt.setString(1,tb.getTaskName() );
 			pstmt.setInt(2, tb.getCategoryId());
 			pstmt.setDate(3, Date.valueOf(tb.getLimit()));
-			pstmt.setInt(4, tb.getStatusCode());
+			pstmt.setString(4, tb.getStatusCode());
 			pstmt.setString(5, tb.getMemo());
 			pstmt.setInt(6,tb.getTaskId());
 			
