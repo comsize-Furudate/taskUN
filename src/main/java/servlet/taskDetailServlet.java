@@ -34,13 +34,13 @@ public class taskDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int i = Integer.parseInt(request.getParameter("task_id"));
+		int id = Integer.parseInt(request.getParameter("task_id"));
 		HttpSession session = request.getSession();
 		List<TaskBean> tbList = (List) session.getAttribute("taskList");
 		
 		TaskBean tb=new TaskBean();
 		for(TaskBean tbean:tbList) {
-			if(tbean.getTaskId()==i) {
+			if(tbean.getTaskId()==id) {
 				tb=tbean;
 				break;
 			}
@@ -64,11 +64,17 @@ public class taskDetailServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int i = Integer.parseInt(request.getParameter("task_id"));
+		int id = Integer.parseInt(request.getParameter("task_id"));
 		HttpSession session = request.getSession();
 		List<TaskBean> tbList = (List) session.getAttribute("taskList");
 
-		TaskBean tb = tbList.get(i - 1);
+		TaskBean tb=new TaskBean();
+		for(TaskBean tbean:tbList) {
+			if(tbean.getTaskId()==id) {
+				tb=tbean;
+				break;
+			}
+		}
 		String loginID = (String) session.getAttribute("id");
 		boolean check;
 		if (loginID.equals(tb.getUserId())) {

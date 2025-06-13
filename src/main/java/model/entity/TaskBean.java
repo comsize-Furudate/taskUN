@@ -66,6 +66,15 @@ public class TaskBean {
 			this.limit=targetDate;
 		}
 	}
+	public void setLimit(LocalDate limit) {
+		if(Objects.nonNull(limit)) {
+			this.limit=limit;
+		}else {
+			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+			        .parse("2019/01/01", LocalDate::from);
+			this.limit=targetDate;
+		}
+	}
 
 	public String getUserId() {
 		return userId;
@@ -109,6 +118,9 @@ public class TaskBean {
 
 	public void setCreateDateTime(Date createDateTime) {
 		this.createDateTime = createDateTime.toLocalDate();
+	}
+	public void setCreateDateTime(LocalDate createDatetime) {
+		this.createDateTime=createDateTime;
 	}
 
 	public LocalDate getUpdateDateTime() {

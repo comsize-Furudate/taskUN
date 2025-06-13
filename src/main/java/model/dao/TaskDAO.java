@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,5 +35,20 @@ public class TaskDAO {
 			return taskList;
 		}
 	}
+	public int update(TaskBean tb) throws SQLException, ClassNotFoundException
+	{
+		String sql ="UPDATE t_task SET task_name = ? , category_id = ? , limit_date= ? , status_code= ? , memo=? WHERE task_id=?";
+		try (
+				PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql)) {
 
-}
+			pstmt.setString(1,tb.getTaskName() );
+			pstmt.setInt(2, tb.getCategoryId());
+			pstmt.setDate(3, Date.valueOf(tb.getLimit()));
+			pstmt.setInt(4, tb.getStatusCode());
+			pstmt.setString(5, tb.getMemo());
+			pstmt.setInt(6,tb.getTaskId());
+			
+			int count = pstmt.executeUpdate();
+			return count;
+	}
+}}
