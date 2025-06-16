@@ -8,10 +8,6 @@
 </head>
 <body>
 
-	
-
-	
-
 	<%try {
 	
 		if(!(session.getAttribute("msg")).equals(null)){
