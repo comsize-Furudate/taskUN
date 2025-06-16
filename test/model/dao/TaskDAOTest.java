@@ -53,5 +53,48 @@ class TaskDAOTest {
 		
 		
 	}
+	
+	@Test
+	void Testdelete_success() {
+		
+		TaskDAO dao = new TaskDAO();
+		int id = 17;
+		int count = 0;
+		
+		try {
+			
+			count = dao.delete(id);
+			
+		}catch(SQLException | ClassNotFoundException | NullPointerException e) {
+			
+			e.printStackTrace();
+		}
+		
+		assertEquals(1,count);
+		
+		
+	}
+	
+	@Test
+	void Testdelete_failure() {
+		
+		TaskDAO dao = new TaskDAO();
+		int id = 17;
+		int count = 0;
+		
+		try {
+			
+			count = dao.delete(id);
+			
+		}catch(SQLException | ClassNotFoundException | NullPointerException e) {
+			
+			e.printStackTrace();
+		}
+		
+		assertEquals(0,count);
+		
+		
+	}
+
 
 }
