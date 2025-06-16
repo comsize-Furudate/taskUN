@@ -14,6 +14,7 @@ import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
 
+
 public class TaskDAO {
 	
 	public List<TaskBean> select() throws SQLException, ClassNotFoundException, ParseException ,NullPointerException {

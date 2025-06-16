@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import model.entity.UserBean;
 
+
 public class UserDAO {
 	
 	public UserBean logincheck(String userId) throws ClassNotFoundException, SQLException {
