@@ -66,8 +66,6 @@ public class TaskDAO {
 			}
 			return limitList;
 		}
-		
-		
 	}
 	
 	public int delete(int taskId) throws SQLException, ClassNotFoundException {

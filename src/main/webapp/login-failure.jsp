@@ -13,8 +13,6 @@
 	<%=request.getAttribute("error")%><br>
 	
 
-
-
 	<a href="login.jsp">ログイン画面に戻る</a>
 
 </body>
