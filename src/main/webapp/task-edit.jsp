@@ -13,6 +13,18 @@
 <title>タスク編集</title>
 </head>
 <body>
+
+	<h2>タスク編集</h2>
+
+	<p style="text-align: right">
+
+		ユーザーID：<%=session.getAttribute("id")%><br>
+		ユーザー名：<%=session.getAttribute("name")%>さん<br>
+		
+	</p>
+	
+	<hr>
+
 	<%
 	TaskBean tb = (TaskBean) session.getAttribute("detail");
 	%>

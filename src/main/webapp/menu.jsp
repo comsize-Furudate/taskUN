@@ -52,7 +52,7 @@
 	</p>
 
 	<p>
-	<form action="task-add-form.jsp">
+	<form action="task-add-servlet" method="get">
 
 		<input type="submit" value="タスク登録">
 

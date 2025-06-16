@@ -11,9 +11,10 @@
 
 	<h2>タスク詳細</h2>
 	<p style="text-align: right">
-		<%--=session.getAttribute("loginsuccess")--%>
-		ユーザーID：<%=session.getAttribute("id")%><br> ユーザー名：<%=session.getAttribute("name")%>さん
-		<br>
+		
+		ユーザーID：<%=session.getAttribute("id")%><br>
+		ユーザー名：<%=session.getAttribute("name")%>さん<br>
+		
 		<%
 		TaskBean tb = (TaskBean) session.getAttribute("detail");
 		boolean check = (boolean) session.getAttribute("check");
