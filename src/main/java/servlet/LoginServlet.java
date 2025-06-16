@@ -150,7 +150,7 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 			session.setAttribute("msg", msg);
-			
+			session.setAttribute("alert", true);	
 			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
 			rd.forward(request, response);
 

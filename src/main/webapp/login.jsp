@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<script type="text/javascript">
+
+localStorage.clear();
+
+</script>
+
 <h2>ログイン</h2>
 
 <form action="login-servlet" method="post">

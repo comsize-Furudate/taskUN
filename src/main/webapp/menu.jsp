@@ -16,8 +16,14 @@
 	%>
 	
 	<script type="text/javascript">
+
+	if(!localStorage.getItem('alertShown')){
+		
 	    var msg = "<%=msg%>";
 			alert(msg);
+
+			localStorage.setItem('alertShown', 'true');
+	}
 	</script>
 
 	<%	}
