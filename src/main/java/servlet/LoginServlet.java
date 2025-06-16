@@ -157,7 +157,8 @@ public class LoginServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException | NullPointerException | ParseException e) {
 
 			e.printStackTrace();
-		}		
-
+		}
+		
+		
 	}
 }
