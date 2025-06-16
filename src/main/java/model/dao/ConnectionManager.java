@@ -9,8 +9,12 @@ public class ConnectionManager {
 	private final static String URL = "jdbc:mysql://localhost:3306/taskdb";
 	private final static String USER = "root";
 	private final static String PASSWORD = "mysql";
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
+	
+	public static Connection getConnection() throws SQLException,ClassNotFoundException {
+		
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		return DriverManager.getConnection(URL,USER,PASSWORD);
+		
+		return DriverManager.getConnection(URL, USER, PASSWORD);
 	}
+
 }

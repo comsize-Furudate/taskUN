@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,38 +8,63 @@
 </head>
 <body>
 
-<h2>メニュー</h2>
-<p style="text-align: right">
-<%--=session.getAttribute("loginsuccess")--%>
-ユーザーID：<%=session.getAttribute("id")%><br>
-ユーザー名：<%=session.getAttribute("name")%>さん
-<br>
-</p>
+	
 
-<hr>
+	
 
-<p>
-<form action="task-list-servlet" method="post">
+	<%try {
+	
+		if(!(session.getAttribute("msg")).equals(null)){
+			String msg = (String)session.getAttribute("msg");
+			
+	%>
+	
+	<script type="text/javascript">
+	    var msg = "<%=msg%>";
+			alert(msg);
+	</script>
 
-<input type ="submit" value="タスク一覧表示">
+	<%	}
+	}catch(NullPointerException e){
+		
+	%>
 
-</form>
-</p>
+	<%} %>
 
-<p>
-<form action="task-add-form.jsp">
+	<h2>メニュー</h2>
+	<p style="text-align: right">
 
-<input type="submit" value="タスク登録">
+		ユーザーID：<%=session.getAttribute("id")%><br>
+		ユーザー名：<%=session.getAttribute("name")%>さん<br>
 
-</form>
-</p>
+	</p>
+
+	<hr>
+
+	<p>
+	<form action="task-list-servlet" method="post">
+
+		<input type="submit" value="タスク一覧表示">
+
+	</form>
+	</p>
+
+	<p>
+	<form action="task-add-form.jsp">
+
+		<input type="submit" value="タスク登録">
+
+	</form>
+	</p>
 
 
-<form action="logout.jsp">
+	<form action="logout.jsp">
 
-<input type="submit" value="ログアウト">
+		<input type="submit" value="ログアウト">
 
-</form>
+	</form>
+	
+	
 
 </body>
 </html>

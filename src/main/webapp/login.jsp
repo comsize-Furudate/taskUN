@@ -12,7 +12,11 @@
 
 <form action="login-servlet" method="post">
 
+<<<<<<< HEAD
 ユーザーID:<input type="text" name="userId"><br>
+=======
+ユーザーID：<input type="text" name="userId"><br>
+>>>>>>> ed3fd5d15e89c3492413f408b3ca24b08096d0a4
 パスワード：<input type="password" name="password">
 
 <p>
