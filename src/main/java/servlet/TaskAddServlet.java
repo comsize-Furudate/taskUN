@@ -46,11 +46,12 @@ public class TaskAddServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 		}
-		TaskDAO dao = new TaskDAO();
+		CategoryDAO dao = new CategoryDAO();
+		StatusDAO sdao= new StatusDAO();
 		try{
-			//プルダウン用の値の取得
+\			//プルダウン用の値の取得
 			List<CategoryBean> categoryList = dao.selectAllCategory();
-			List<StatusBean> statusList = dao.selectAllStatus();
+			List<StatusBean> statusList = sdao.selectAllStatus();
 			//日付制御用の値の取得
 			LocalDate today = LocalDate.now();
 			
@@ -100,7 +101,7 @@ public class TaskAddServlet extends HttpServlet {
 			if(limit != null) {
 				LocalDate limit2 = LocalDate.parse(limit);
 				LocalDate limit3=(LocalDate)session.getAttribute("today");
-				if(limit3.isBefore(limit2)){
+				if(limit3.isBefore(limit2.plusDays(1))){
 					taskBean.setLimit(limit2);
 				}else {
 					RequestDispatcher rd = request.getRequestDispatcher("task-add-failure.jsp");
