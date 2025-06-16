@@ -92,23 +92,27 @@
 
 	<p>
 	<div style="display: inline-flex">
-		<%
+		<%--
 		if (check) {
-		%>
+		--%>
 		<form action="task-edit.jsp" method="post">
 
-			<input type="submit" value="編集する">
+			<input type="submit" value="編集する" id="button" disabled>
 
 		</form>
 
 		<form action="task-delete.jsp" method="post">
 
-			<input type="submit" value="削除する">
+			<input type="submit" value="削除する" id="button" disabled>
 
 		</form>
-		<%
+		<%--
 		}
-		%>
+		--%>
+		<script>
+		if (check){
+			button.disabled=false;}
+		</script>
 		<form action="task-list.jsp" method="post">
 
 			<input type="submit" value="一覧へ戻る">
