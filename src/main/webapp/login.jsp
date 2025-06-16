@@ -8,6 +8,8 @@
 </head>
 <body>
 
+localStorage.clear();
+
 <h2>ログイン</h2>
 
 <form action="login-servlet" method="post">
@@ -21,6 +23,7 @@
 <input type="reset" value="クリア">
 
 </p>
+
 
 </form>
 
