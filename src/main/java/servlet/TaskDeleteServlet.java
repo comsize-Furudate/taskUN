@@ -33,10 +33,7 @@ public class TaskDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
-		
-=======
->>>>>>> c46a05ff471d12d850c90597d14cf58c9110acb5
+
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		rd.forward(request, response);
 	}

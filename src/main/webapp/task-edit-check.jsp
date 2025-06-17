@@ -9,6 +9,19 @@
 <title>編集内容確認</title>
 </head>
 <body>
+
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+	
 <b>以下の情報を登録します</b>
 <%TaskBean tb=(TaskBean)session.getAttribute("newdetail"); %>
 <table border="1">
@@ -41,5 +54,7 @@
 <form action="task-edit.jsp"method="post">
 <input type="submit" value="編集画面に戻る">
 </form>
+
+<%} %>
 </body>
 </html>

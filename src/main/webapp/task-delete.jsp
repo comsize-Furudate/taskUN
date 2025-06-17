@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="model.entity.TaskBean,java.time.format.DateTimeFormatter"%>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="model.entity.TaskBean"%>
->>>>>>> c46a05ff471d12d850c90597d14cf58c9110acb5
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +9,19 @@
 <title>タスク削除画面</title>
 </head>
 <body>
-<<<<<<< HEAD
+
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+
 
 <h2>タスク削除</h2>
 
@@ -106,38 +114,8 @@
 			<input type="submit" value="詳細に戻る">
 		</form>
 	</div>
-=======
-<%TaskBean bean=(TaskBean)session.getAttribute("detail"); %>
-<table border=1>
-	<tr>
-		<th>タスク名</th>
-		<td><%bean.getTaskName(); %></td>
-	</tr>
-	<tr>
-		<th>カテゴリ名</th>
-		<td><%bean.getCategoryName(); %></td>
-	</tr>
-	<tr>
-		<th>期限</th>
-		<td><%bean.getLimit(); %></td>
-	</tr>
-	<tr>
-		<th>ステータス</th>
-		<td><%bean.getStatusName(); %></td>
-	</tr>
-	<tr>
-		<th>メモ</th>
-		<td><%bean.getMemo(); %></td>
-	</tr>
-</table>
-<div style = "display:inline-flex">
-<form action = "task-delete-servlet" method = "post">
-<input type = "submit" value = "削除する">
-</form>
-<form action = "detail.jsp" method = "get">
-<input type = "submit" value = "詳細に戻る">
-</form>
-</div>
->>>>>>> c46a05ff471d12d850c90597d14cf58c9110acb5
+	
+	<%} %>
+
 </body>
 </html>
