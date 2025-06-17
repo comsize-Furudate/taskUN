@@ -58,7 +58,7 @@ public class TaskDeleteServlet extends HttpServlet {
 		 	try {
 				deleteResult = dao.delete(taskId);
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO 自動生成された catch ブロック
+				
 				e.printStackTrace();
 			}
 		 	//結果分岐
