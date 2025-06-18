@@ -63,7 +63,14 @@ public class TaskEditCheckServlet extends HttpServlet {
 		}else {
 			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 			        .parse(limitstr, LocalDate::from);
-			newtb.setLimit(targetDate);
+			if(LocalDate.now().isBefore(targetDate.plusDays(1))) {
+				newtb.setLimit(targetDate);
+			}else {
+				newtb.setLimit(DateTimeFormatter.ofPattern("yyyy/MM/dd")
+				        .parse("2019/01/01", LocalDate::from));
+		
+			}
+			
 		}
 		String[] statuses=request.getParameter("status_name").split(",", 2);
 		newtb.setStatusCode(statuses[0]);
