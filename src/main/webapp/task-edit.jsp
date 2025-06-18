@@ -14,6 +14,18 @@
 </head>
 <body>
 
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+
 	<h2>タスク編集</h2>
 
 	<p style="text-align: right">
@@ -88,6 +100,8 @@
 	<form action="task-detail.jsp" method="post">
 		<input type="submit" value="詳細へ戻る">
 	</form>
+	
+	<%} %>
 	
 </body>
 </html>
