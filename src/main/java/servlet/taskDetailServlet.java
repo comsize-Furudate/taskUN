@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.CommentDAO;
+import model.entity.CommentBean;
 import model.entity.TaskBean;
 
 /**
@@ -45,6 +48,15 @@ public class taskDetailServlet extends HttpServlet {
 				break;
 			}
 		}
+		CommentDAO dao = new CommentDAO();
+		//コメント表示用
+		try {
+			List<CommentBean> commentList = dao.selectComment(i);
+			session.setAttribute("commentList", commentList);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		String loginID = (String) session.getAttribute("id");
 		boolean check;
 		if (loginID.equals(tb.getUserId())) {
@@ -54,6 +66,7 @@ public class taskDetailServlet extends HttpServlet {
 		}
 		session.setAttribute("check", check);
 		session.setAttribute("detail", tb);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
 		rd.forward(request, response);
 	}

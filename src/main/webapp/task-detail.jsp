@@ -1,7 +1,7 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="model.entity.TaskBean,java.time.format.DateTimeFormatter"%>
+	import="java.util.List,model.entity.TaskBean,java.time.format.DateTimeFormatter,model.entity.CommentBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,13 +31,14 @@
 		
 		<%
 		TaskBean tb = (TaskBean) session.getAttribute("detail");
+		List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
 		boolean check = (boolean) session.getAttribute("check");
 		%>
 		
 	</p>
 
 	<hr>
-
+	
 	<table border="1">
 
 		<tr>
@@ -106,6 +107,22 @@
 		</tr>
 
 	</table>
+	<%if(commentList != null){ %>
+	t.
+	<%for(CommentBean bean : commentList){ %>
+	<%=bean.getUserId() %><%=bean.getComment() %><%=bean.getUpdateDateTime() %><br>
+	<%} %>
+	<%} %>
+	
+	<%String comment = (String)request.getAttribute("comment"); %>
+	<%if(comment != null){ %>
+		<%=session.getAttribute("id") %><%=comment %><%=request.getAttribute("now") %>
+	<%} %>
+	<form action = "comment-post-servlet" method = "post">
+	<textarea name = "commentPost"  rows="4" cols="25" maxlength = "100">コメントを投稿する。</textarea>
+	<input type = submit value =" 投稿する">
+	<input type = reset value = "クリア">
+	</form>
 
 	<%
 	if (check) {
