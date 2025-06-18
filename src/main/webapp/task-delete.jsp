@@ -1,6 +1,7 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="model.entity.TaskBean,java.time.format.DateTimeFormatter"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,19 @@
 <title>タスク削除画面</title>
 </head>
 <body>
+
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+
 
 <h2>タスク削除</h2>
 
@@ -100,5 +114,8 @@
 			<input type="submit" value="詳細に戻る">
 		</form>
 	</div>
+	
+	<%} %>
+
 </body>
 </html>

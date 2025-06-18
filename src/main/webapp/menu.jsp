@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+
 	<%try {
 	
 		if(!(session.getAttribute("msg")).equals(null)){
@@ -66,7 +78,7 @@
 
 	</form>
 	
-	
+	<%} %>
 
 </body>
 </html>
