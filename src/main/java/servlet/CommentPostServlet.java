@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,9 +64,20 @@ public class CommentPostServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		//表示するコメントを保持する
-		request.setAttribute("comment", comment);
-		request.setAttribute("now", LocalDateTime.now());
+		if(result ==0) {
+			RequestDispatcher rd =request.getRequestDispatcher("comment-post-failure.jsp");
+			rd.forward(request, response);
+		}
+		//表示するコメントを取得する
+		List<CommentBean> commentList;
+		try {
+			commentList = dao.selectComment(((TaskBean) session.getAttribute("detail")).getTaskId());
+			session.setAttribute("commentList", commentList);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
 		RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
 		rd.forward(request, response);
 		

@@ -57,6 +57,7 @@ public class taskDetailServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+		
 		String loginID = (String) session.getAttribute("id");
 		boolean check;
 		if (loginID.equals(tb.getUserId())) {
