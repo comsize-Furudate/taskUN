@@ -1,0 +1,62 @@
+package servlet;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.entity.CommentBean;
+
+/**
+ * Servlet implementation class CommentDeleteCheckServlet
+ */
+@WebServlet("/comment-delete-check-servlet")
+public class CommentDeleteCheckServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CommentDeleteCheckServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		System.out.println(request.getParameter("comment_id"));
+		int comId=Integer.parseInt(request.getParameter("comment_id"));
+		HttpSession session=request.getSession();
+		List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
+		CommentBean cb=new CommentBean();
+		for (CommentBean cBean:commentList) {
+			if(cBean.getCommentId()==comId) {
+				cb=cBean;
+				break;
+			}
+		}
+		session.setAttribute("DeleteComment", cb);
+		RequestDispatcher rd = request.getRequestDispatcher("comment-delete.jsp");
+		rd.forward(request, response);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
