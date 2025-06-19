@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>メニュー</title>
+</head>
+<body>
+
+<%
+	if (session.getAttribute("id") == null) {
+%>
+
+	<h2>ログインされていません</h2>
+
+	<a href = "login.jsp">ログイン画面へ</a>
+
+	<%
+	} else {
+	%>
+
+	<%try {
+	
+		if(!(session.getAttribute("msg")).equals(null)){
+			String msg = (String)session.getAttribute("msg");
+			
+	%>
+	
+	<script type="text/javascript">
+
+	if(!localStorage.getItem('alertShown')){
+		
+	    var msg = "<%=msg%>";
+			alert(msg);
+
+			localStorage.setItem('alertShown', 'true');
+	}
+	</script>
+
+	<%	}
+	}catch(NullPointerException e){
+		
+	%>
+
+	<%} %>
+
+	<h2>メニュー</h2>
+	<p style="text-align: right">
+
+		ユーザーID：<%=session.getAttribute("id")%><br>
+		ユーザー名：<%=session.getAttribute("name")%>さん<br>
+
+	</p>
+
+	<hr>
+
+	<p>
+	<form action="task-list-servlet" method="post">
+
+		<input type="submit" value="タスク一覧表示">
+
+	</form>
+	</p>
+
+	<p>
+	<form action="task-add-servlet" method="get">
+
+		<input type="submit" value="タスク登録">
+
+	</form>
+	</p>
+
+
+	<form action="logout.jsp">
+
+		<input type="submit" value="ログアウト">
+
+	</form>
+	
+	<%} %>
+
+</body>
+</html>
