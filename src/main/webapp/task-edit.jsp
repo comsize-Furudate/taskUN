@@ -1,7 +1,6 @@
 <%@page import="model.entity.StatusBean"%>
 <%@page import="model.dao.StatusDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="java.time.LocalDate"%>
 <%@page import="model.dao.CategoryDAO"%>
 <%@page import="model.entity.CategoryBean"%>
 <%@page import="model.entity.TaskBean"%>
@@ -40,8 +39,6 @@
 
 	<%
 	TaskBean tb = (TaskBean) session.getAttribute("detail");
-	LocalDate today = LocalDate.now();
-	
 	%>
 
 	<form action="task-edit-check-servlet" method="post">
@@ -71,7 +68,7 @@
 			
 			<tr>
 				<td>期限</td>
-				<td><input type="date" name="limit" min = "<%=today %>"></td>
+				<td><input type="date" name="limit"></td>
 			</tr>
 			
 			<tr>
