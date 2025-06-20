@@ -3,6 +3,7 @@ package model.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +11,22 @@ import org.junit.jupiter.api.Test;
 
 import model.entity.CommentBean;
 
+=======
+
+import org.junit.jupiter.api.Test;
+
+>>>>>>> 92b5b2596c29e31f2710e70fffb5e816c218d7af
 public class CommentDAOTest {
 	
 	@Test
 	void Testdeletecomment_success() {
 		
 		CommentDAO dao = new CommentDAO();
+<<<<<<< HEAD
 		int id = 17;
+=======
+		int id = 5;
+>>>>>>> 92b5b2596c29e31f2710e70fffb5e816c218d7af
 		int count = 0;
 		
 		try {
@@ -54,6 +64,7 @@ public class CommentDAOTest {
 		
 	}
 
+<<<<<<< HEAD
 	@Test
 	void TestDeleteAllComment_Success() {
 		CommentDAO dao =new CommentDAO();
@@ -165,4 +176,6 @@ public class CommentDAOTest {
 		assertNotNull(test);
 	}
 
+=======
+>>>>>>> 92b5b2596c29e31f2710e70fffb5e816c218d7af
 }
