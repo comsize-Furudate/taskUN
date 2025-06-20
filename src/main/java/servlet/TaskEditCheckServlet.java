@@ -57,9 +57,7 @@ public class TaskEditCheckServlet extends HttpServlet {
 		newtb.setCategoryName(categorys[1]);
 		String limitstr =request.getParameter("limit");
 		if(limitstr.equals("")) {
-			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-			        .parse("2019/01/01", LocalDate::from);
-			newtb.setLimit(targetDate);
+			newtb.setLimit(tb.getLimit());
 		}else {
 			LocalDate targetDate = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 			        .parse(limitstr, LocalDate::from);
