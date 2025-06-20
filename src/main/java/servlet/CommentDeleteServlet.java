@@ -1,16 +1,23 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.dao.CommentDAO;
+import model.entity.CommentBean;
 
 /**
  * Servlet implementation class CommentDeleteServlet
  */
-@WebServlet("/comment-delete-servlet")
+@WebServlet("/CommentDeleteServlet")
 public class CommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +41,23 @@ public class CommentDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session =request.getSession();
+		CommentBean cb=(CommentBean)session.getAttribute("DeleteComment");
+		CommentDAO cdao= new CommentDAO();
+		try {
+			int count=cdao.deleteComment(cb.getCommentId());
+			if(count==1) {
+				RequestDispatcher rd = request.getRequestDispatcher("comment-delete-succses.jsp");
+				rd.forward(request, response);
+			}else {
+			RequestDispatcher rd = request.getRequestDispatcher("comment-delete-failure.jsp");
+			rd.forward(request, response);}
+		} catch (ClassNotFoundException | SQLException e) {
+			RequestDispatcher rd = request.getRequestDispatcher("comment-delete-failure.jsp");
+			rd.forward(request, response);
+			e.printStackTrace();
+		}
 	}
 
 }

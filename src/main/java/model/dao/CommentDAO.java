@@ -46,8 +46,19 @@ public class CommentDAO {
 		return count;
 	}
 	
-	public int deleteComment(int commentId) {
-		return 0;
+	public int deleteComment(int commentId) throws ClassNotFoundException, SQLException {
+		
+		String sql= "DELETE FROM t_comment WHERE comment_id=?";
+		int count = 0;
+		try(Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			pstmt.setInt(1, commentId);
+			
+			
+			count = pstmt.executeUpdate();
+		}
+		return count;
 	}
 	
 	public int deleteAllComment(int taskId) throws ClassNotFoundException, SQLException {

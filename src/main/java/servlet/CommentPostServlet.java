@@ -48,6 +48,10 @@ public class CommentPostServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		//入力されたコメントの取得
 		String comment = request.getParameter("commentPost");
+		if(comment.equals("コメントを投稿する。")||comment.equals("")) {
+			RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
+			rd.forward(request, response);
+		}else {
 		
 		//Beanに詰める
 		CommentBean bean =new CommentBean();
@@ -83,4 +87,4 @@ public class CommentPostServlet extends HttpServlet {
 		
 	}
 
-}
+}}
