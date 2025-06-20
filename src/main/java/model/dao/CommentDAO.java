@@ -50,6 +50,7 @@ public class CommentDAO {
 		
 		String sql= "DELETE FROM t_comment WHERE comment_id=?";
 		int count = 0;
+<<<<<<< HEAD
 		try(Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
 			
@@ -64,15 +65,17 @@ public class CommentDAO {
 	public int deleteAllComment(int taskId) throws ClassNotFoundException, SQLException {
 		String sql = "delete from t_comment where task_id = ?";
 		int count =0;
+=======
+>>>>>>> 92b5b2596c29e31f2710e70fffb5e816c218d7af
 		try(Connection con = ConnectionManager.getConnection();
-						PreparedStatement pstmt = con.prepareStatement(sql)){
-			pstmt.setInt(1, taskId);
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			pstmt.setInt(1, commentId);
+			
+			
 			count = pstmt.executeUpdate();
-				
 		}
-		
 		return count;
-		
 	}
 
 }
