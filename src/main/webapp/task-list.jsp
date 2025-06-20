@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<%
+
+DateTimeFormatter dtf1 =
+DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"); 
+
+%>
+
 	<%
 	if (session.getAttribute("id") == null) {
 %>
@@ -63,6 +70,8 @@
 		<%
 		for (int i = 0; i < tbList.size(); i++) {
 			TaskBean tb = tbList.get(i);
+			String formatCreateDate = dtf1.format(tb.getCreateDateTime());
+			String formatUpdateDate = dtf1.format(tb.getUpdateDateTime());
 		%>
 		<tr>
 
@@ -92,8 +101,8 @@
 				 }
 				 %>
 			</td>
-			<td><%=tb.getCreateDateTime()%></td>
-			<td><%=tb.getUpdateDateTime()%></td>
+			<td><%=formatCreateDate%></td>
+			<td><%=formatUpdateDate%></td>
 
 
 		</tr>

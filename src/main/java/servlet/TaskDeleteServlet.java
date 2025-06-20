@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.CommentDAO;
 import model.dao.TaskDAO;
 import model.entity.TaskBean;
 
@@ -53,7 +54,17 @@ public class TaskDeleteServlet extends HttpServlet {
 		 	//削除するタスクのタスクIDを受け取る
 		 	TaskBean bean = (TaskBean)session.getAttribute("detail");
 		 	int taskId = bean.getTaskId();
-		 	//削除を行う
+		 	
+		 	//先にコメントの削除する。
+		 	CommentDAO cd = new CommentDAO();
+		 	try {
+				int count = cd.deleteAllComment(taskId);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+		 	
+		 	//タスク削除を行う
 		 	TaskDAO dao = new TaskDAO();
 		 	int deleteResult = 0;//deleteの戻り値入れる変数
 		 	try {
@@ -62,6 +73,7 @@ public class TaskDeleteServlet extends HttpServlet {
 				
 				e.printStackTrace();
 			}
+		 	
 		 	//結果分岐
 		 	if(deleteResult != 0) {
 		 		RequestDispatcher rd = request.getRequestDispatcher("task-delete-success.jsp");
